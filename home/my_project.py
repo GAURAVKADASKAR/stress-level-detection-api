@@ -8,7 +8,7 @@ class MyModel:
 <<<<<<< HEAD
         self.loaded_model = pickle.load(open(r'C:/Users/Dell/Desktop/djangoworkspace/hack/stress-level-detection.py','rb'))
 =======
-        self.loaded_model = pickle.load(open(r'C:/Users/asus/Desktop/New folder (17)/stress-level-detection-api/stress_trained (2).sav','rb'))
+        self.loaded_model = pickle.load(open(r'C:/Users/Dell/Desktop/djangoworkspace/hack/stress_trained (2).sav','rb'))
 >>>>>>> 83f4bb8de30ba45a8910e546d422bce874c2c09e
 
     def stresslevel_prediction(self, input_data):
