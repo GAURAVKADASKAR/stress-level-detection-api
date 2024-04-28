@@ -4,7 +4,7 @@ import streamlit as st
 
 class MyModel:
     def __init__(self):
-        self.loaded_model = pickle.load(open(r'C:/Users/Dell/Desktop/djangoworkspace/hack/stress_trained.sav','rb'))
+        self.loaded_model = pickle.load(open(r'C:/Users/Dell/Desktop/djangoworkspace/hack/stress_trained (2).sav','rb'))
 
     def stresslevel_prediction(self, input_data):
         id_np_array = np.asarray(input_data)
@@ -16,7 +16,7 @@ class MyModel:
         elif prediction[0] == 1:
             return "Stress Level: MEDIUM"
         else:   
-            return "Stress Level: HIGH"
+            return "Stress Level: nothing"
                             
 def main():
     st.title('STRESS LEVEL PREDICTION WEB APP')

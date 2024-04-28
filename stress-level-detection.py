@@ -3,7 +3,7 @@ import pickle
 import streamlit as st  
 
 
-loaded_model = pickle.load(open(r'C:\Users\aryan\OneDrive\Desktop\Algorithm ACES\stress_trained.sav','rb'))
+loaded_model = pickle.load(open(r'C:/Users/Dell/Desktop/djangoworkspace/hack/stress_trained (2).sav','rb'))
 
 
 def stresslevel_prediction(input_data):
