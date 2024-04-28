@@ -2,6 +2,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .my_project import MyModel
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .utils import read_file, preprocess_text, greeting, generate_response
+import nltk
 
 class PredictStressLevel(APIView):
     def post(self, request):
@@ -148,3 +152,24 @@ class PredictSleepQuality(APIView):
 
         # Return the prediction as a JSON response
         return Response({'prediction': prediction}, status=status.HTTP_200_OK)
+    
+
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
+
+class ChatbotView(APIView):
+    def post(self, request):
+        user_input = request.data.get('user_input', '')
+        raw_text = read_file('demo (1).txt')  # Path to your text file
+        sent_tokens = nltk.sent_tokenize(raw_text)
+
+        if user_input.lower() == "bye":
+            response = "miya: Bye! Have a great time!"
+        else:
+            if greeting(user_input) is not None:
+                response = "Aneka: " + greeting(user_input)
+            else:
+                response = generate_response(user_input.lower(), sent_tokens)
+
+        return Response({'response': response})
