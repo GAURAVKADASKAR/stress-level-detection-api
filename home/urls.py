@@ -6,5 +6,6 @@ from home.views import *
 urlpatterns = [
     path('predict/',PredictStressLevel.as_view()),
     path('anxi/', PredictAPIView.as_view(), name='predict'),
+    path('sleep/',PredictSleepQuality.as_view()),
     path('admin/', admin.site.urls),
 ]

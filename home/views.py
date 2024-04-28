@@ -121,3 +121,30 @@ class PredictAPIView(APIView):
             return Response({'prediction': array[randint(0,29)]}, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+import pickle
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+class PredictSleepQuality(APIView):
+    def post(self, request):
+        # Load the trained model
+        with open('sleep1.sav', 'rb') as f:
+            loaded_model = pickle.load(f)
+        
+        # Extract input data from the request
+        data = request.data
+        sleep_duration = data.get('sleep_duration', 0)
+        efficiency = data.get('efficiency', 0)
+        disturbance = data.get('disturbance', 0)
+
+        # Organize input data into the format expected by the model
+        X_test = [[sleep_duration, efficiency, disturbance]]
+
+        # Make predictions using the loaded model
+        prediction = loaded_model.predict(X_test)
+
+        # Return the prediction as a JSON response
+        return Response({'prediction': prediction}, status=status.HTTP_200_OK)
